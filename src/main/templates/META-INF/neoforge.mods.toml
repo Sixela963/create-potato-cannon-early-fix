@@ -33,25 +33,28 @@ displayName="${mod_name}" #mandatory
 #updateJSONURL="https://change.me.example.invalid/updates.json" #optional
 
 # A URL for the "homepage" for this mod, displayed in the mod UI
-#displayURL="https://change.me.to.your.mods.homepage.example.invalid/" #optional
+displayURL="https://modrinth.com/project/create-pc-enchant-fix/" #optional
 
 # A file name (in the root of the mod JAR) containing a logo for display
-#logoFile="examplemod.png" #optional
+logoFile="create_potato_cannon_fix_logo.png" #optional
 
 # A text field displayed in the mod UI
-#credits="" #optional
+credits="BarkNMeow" #optional
 
 # The authors of the mod, displayed in the mod UI (optional)
-#authors=""
+authors="Sixela963"
 
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-Example mod description.
+A simple Create mod addon that implements PR#10080 by BarkNMeow through some quick and dirty Mixins.
+Fixes the Punch, Power and Flame enchantments having no effect on the potato cannon (as reported in issue #8030).
+With this fix, a properly enchanted Potato Cannon with well selected ammo is the beast it should always have been.
+Does not fix the other vanilla enchantement issues present with Create gear.
 '''
 
 # The [[mixins]] block allows you to declare your mixin config to FML so that it gets loaded.
-#[[mixins]]
-#config="${mod_id}.mixins.json"
+[[mixins]]
+    config="${mod_id}.mixins.json"
 
 # The [[accessTransformers]] block allows you to declare where your AT file is.
 # If this block is omitted, a fallback attempt will be made to load an AT from META-INF/accesstransformer.cfg
@@ -85,6 +88,13 @@ Example mod description.
     type="required"
     # This version range declares a minimum of the current minecraft version up to but not including the next major version
     versionRange="${minecraft_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="create"
+    type="required"
+    versionRange="[6.0.10,6.1.0)"
     ordering="NONE"
     side="BOTH"
 
